@@ -1,0 +1,19 @@
+from collections.abc import ValuesView
+import pandas as pd
+from sklearn import linear_model
+
+dados = pd.read_csv("https://raw.githubusercontent.com/profmailson/2024-AM/refs/heads/main/Sorveteria.csv", sep=";")
+
+dados.head()
+
+x = dados.iloc[:, [ 0 ] ].values
+y = dados.iloc[:, [ 1 ] ].values
+
+modelo = linear_model.LinearRegression()
+modelo.fit(x,y)
+
+a = modelo.intercept_
+b = modelo.coef_
+r = a+b*85
+
+print('Resposta=', r)
